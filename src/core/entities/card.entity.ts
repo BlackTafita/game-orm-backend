@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Tag } from "./tag.entity";
 import { Theme } from "./theme.entity";
 
@@ -13,7 +13,8 @@ export class Card {
     @Column()
     description: string;
 
-    @ManyToMany(() => Tag, (tag) => tag.cards)
+    @ManyToMany(() => Tag)
+    @JoinTable()
     tags: Tag[];
 
     @ManyToOne(() => Theme, (theme) => theme.cards)
