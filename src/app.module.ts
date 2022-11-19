@@ -7,6 +7,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Theme } from './core/entities/theme.entity';
 import { Tag } from './core/entities/tag.entity';
+import { Card } from './core/entities/card.entity';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { Tag } from './core/entities/tag.entity';
       port: 5432,
       database: 'postgres',
       username: 'tafita',
-      entities: [Theme, Tag],
+      entities: [Theme, Tag, Card],
     }),
     ThemeModule,
   ],

@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Card } from "./card.entity";
 
 @Entity()
 
@@ -8,4 +9,7 @@ export class Theme {
 
     @Column()
     name: string;
+
+    @OneToMany(() => Card, (card) => card.theme)
+    cards: Card[];
 }
