@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { Theme } from './core/entities/theme.entity';
 import { Tag } from './core/entities/tag.entity';
 import { Card } from './core/entities/card.entity';
+import { CardModule } from './card/card.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { Card } from './core/entities/card.entity';
       entities: [Theme, Tag, Card],
     }),
     ThemeModule,
+    CardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

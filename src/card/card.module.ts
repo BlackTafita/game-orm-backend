@@ -6,9 +6,13 @@ https://docs.nestjs.com/modules
 */
 
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Card } from 'src/core/entities/card.entity';
 
 @Module({
-    imports: [],
+    imports: [
+        TypeOrmModule.forFeature([Card]),
+    ],
     controllers: [
         CardController,
     ],
