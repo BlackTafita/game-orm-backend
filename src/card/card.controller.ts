@@ -10,6 +10,16 @@ import { CardService } from './card.service';
 @Crud({
     model: {
         type: Card,
+    },
+    query: {
+        join: {
+            tags: {
+                eager: true,
+            },
+            theme: {
+                eager: true,
+            }
+        }
     }
 })
 @Controller('card')
