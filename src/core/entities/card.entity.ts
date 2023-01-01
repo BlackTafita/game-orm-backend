@@ -8,10 +8,10 @@ export class Card {
     id: number;
 
     @Column()
-    title: string;
-
-    @Column()
     description: string;
+
+    @Column({nullable: true})
+    image: string;
 
     @ManyToMany(() => Tag)
     @JoinTable()
