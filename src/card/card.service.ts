@@ -12,4 +12,11 @@ export class CardService extends TypeOrmCrudService<Card> {
     constructor(@InjectRepository(Card) repo) {
         super(repo);
     }
+
+    async getRandomCards(): Promise<Card[]> {
+        return this.repo.createQueryBuilder()
+            .orderBy("RANDOM()")
+            .limit(45)
+            .getMany()
+    }
 }

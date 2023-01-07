@@ -9,6 +9,7 @@ import { Theme } from './core/entities/theme.entity';
 import { Tag } from './core/entities/tag.entity';
 import { Card } from './core/entities/card.entity';
 import { CardModule } from './card/card.module';
+import { GameModule } from './game/game.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { CardModule } from './card/card.module';
     }),
     ThemeModule,
     CardModule,
+    GameModule,
   ],
   controllers: [AppController],
   providers: [AppService],
