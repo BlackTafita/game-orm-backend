@@ -1,14 +1,9 @@
 import { DataSource } from 'typeorm';
-import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
-import { Tag } from './src/core/entities/tag.entity';
-import { Theme } from './src/core/entities/theme.entity';
-import { Card } from './src/core/entities/card.entity';
  
 config();
  
-const configService = new ConfigService();
- 
+
 export default new DataSource({
   type: 'postgres',
   host: 'localhost',

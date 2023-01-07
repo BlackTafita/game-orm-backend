@@ -19,4 +19,10 @@ export class CardService extends TypeOrmCrudService<Card> {
             .limit(45)
             .getMany()
     }
+
+    async create(card: {description: string}): Promise<Card> {
+        const newCard = this.repo.create();
+        newCard.description = card.description;
+        return this.repo.save(newCard);
+    }
 }
