@@ -10,17 +10,20 @@ import { Tag } from './core/entities/tag.entity';
 import { Card } from './core/entities/card.entity';
 import { CardModule } from './card/card.module';
 import { GameModule } from './game/game.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TagModule,
     CoreModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      database: 'postgres',
-      username: 'tafita',
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_DATABASE,
       entities: [Theme, Tag, Card],
     }),
     ThemeModule,
@@ -30,4 +33,4 @@ import { GameModule } from './game/game.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
