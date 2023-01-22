@@ -24,7 +24,9 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_DATABASE,
-      ssl: {},
+      ssl: {
+        ca: process.env.DB_SSL,
+      },
       entities: [Theme, Tag, Card],
     }),
     ThemeModule,
