@@ -25,6 +25,7 @@ import { ConfigModule } from '@nestjs/config';
       password: process.env.DB_PASS,
       database: process.env.DB_DATABASE,
       ssl: {
+        rejectUnauthorized: false, // TODO: fix this
         ca: process.env.DB_SSL,
       },
       entities: [Theme, Tag, Card],

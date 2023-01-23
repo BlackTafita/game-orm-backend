@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 
 config();
 
+console.log(process.env.DB_SSL);
 export default new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST,
@@ -11,7 +12,8 @@ export default new DataSource({
   password: process.env.DB_PASS,
   database: process.env.DB_DATABASE,
   ssl: {
-    ca: process.env.SSL_CERT,
+    rejectUnauthorized: false,
+    ca: process.env.DB_SSL,
   },
   entities: ['dist/src/core/entities/**/*{.js,.ts}'],
   migrations: ['dist/migrations/**/*{.js,.ts}'],
