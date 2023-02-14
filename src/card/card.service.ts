@@ -9,20 +9,21 @@ import { Card } from 'src/core/entities/card.entity';
 
 @Injectable()
 export class CardService extends TypeOrmCrudService<Card> {
-    constructor(@InjectRepository(Card) repo) {
-        super(repo);
-    }
+  constructor(@InjectRepository(Card) repo) {
+    super(repo);
+  }
 
-    async getRandomCards(): Promise<Card[]> {
-        return this.repo.createQueryBuilder()
-            .orderBy("RANDOM()")
-            .limit(45)
-            .getMany()
-    }
+  async getRandomCards(): Promise<Card[]> {
+    return this.repo
+      .createQueryBuilder()
+      .orderBy('RANDOM()')
+      .limit(10)
+      .getMany();
+  }
 
-    async create(card: {description: string}): Promise<Card> {
-        const newCard = this.repo.create();
-        newCard.description = card.description;
-        return this.repo.save(newCard);
-    }
+  async create(card: { description: string }): Promise<Card> {
+    const newCard = this.repo.create();
+    newCard.description = card.description;
+    return this.repo.save(newCard);
+  }
 }
