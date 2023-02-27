@@ -3,12 +3,14 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { json, urlencoded } from 'express';
 import * as process from 'process';
+import { AuthGuard } from './auth/auth.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
   app.use(json({ limit: '50mb' }));
   app.use(urlencoded({ extended: true, limit: '50mb' }));
+  app.useGlobalGuards(new AuthGuard());
 
   const config = new DocumentBuilder()
     .setTitle('Cats example')
