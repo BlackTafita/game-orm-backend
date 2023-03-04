@@ -1,5 +1,7 @@
 import { DataSource } from 'typeorm';
 import { config } from 'dotenv';
+import { fsReadFile } from 'ts-loader/dist/utils';
+import * as fs from 'fs';
 
 config();
 
@@ -11,6 +13,11 @@ export default new DataSource({
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_DATABASE,
+  ssl: fs.existsSync('ca-certificate.crt')
+    ? {
+        ca: fsReadFile('ca-certificate.crt'),
+      }
+    : undefined,
   entities: ['dist/src/core/entities/**/*{.js,.ts}'],
   migrations: ['dist/migrations/**/*{.js,.ts}'],
   subscribers: ['dist/src/core/subscribers/**/*{.js,.ts}'],

@@ -12,6 +12,8 @@ import { CardModule } from './card/card.module';
 import { GameModule } from './game/game.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { fsReadFile } from 'ts-loader/dist/utils';
+import * as fs from 'fs';
 
 @Module({
   imports: [
@@ -25,6 +27,11 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_DATABASE,
+      ssl: fs.existsSync('ca-certificate.crt')
+        ? {
+            ca: fsReadFile('ca-certificate.crt'),
+          }
+        : undefined,
       entities: [Theme, Tag, Card],
     }),
     ThemeModule,
